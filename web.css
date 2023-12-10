@@ -1,0 +1,97 @@
+:root{
+
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("background.png");
+    background-position: center;
+    background-size: cover;
+}
+
+main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    height: 100vh;
+    width: 100%;
+}
+
+section{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.sec-1{
+    height: 80%;
+    width: 60%;
+    display: flex;
+    align-items: center;
+    background-color: #E3E6EC ;
+    border-radius: 25px;
+}
+
+h1{
+    font-size: 48px;
+}
+
+.upload{
+    margin: 0 0 0 80px;
+}
+
+h2{
+    margin: 0;
+    margin: 10px 0 0 0;
+    font-size: 35px;
+}
+h4{
+    margin: 0;
+    font-size: 25px;
+}
+
+.input-container{
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.upload_container{
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-image-container{
+    height: 100%;
+    width: 60%;
+}
+
+.input-image-container2{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.img-placement{
+    height: 50vh;
+    border-radius: 25px;
+}
+
+input{
+    margin-left: 80px;
+}
