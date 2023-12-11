@@ -1,7 +1,3 @@
-:root{
-
-}
-
 body{
     margin: 0;
     padding: 0;
@@ -90,6 +86,7 @@ h4{
 .img-placement{
     height: 50vh;
     border-radius: 25px;
+    /* background-image: url('baybayinimg.jpg'); */
 }
 
 input{
