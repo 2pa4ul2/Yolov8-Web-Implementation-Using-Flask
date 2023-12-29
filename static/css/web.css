@@ -1,0 +1,104 @@
+body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("/static/images/background.png");
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+/* 
+.bg{
+    height: 100vh;
+    width: 100%;
+} */
+
+main{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    height: 100vh;
+    width: 100%;
+    color: #E3E6EC;
+}
+
+section{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.sec-1{
+    height: 80%;
+    width: 60%;
+    display: flex;
+    align-items: center;
+    background-color: #E3E6EC ;
+    border-radius: 25px;
+}
+
+h1{
+    font-size: 48px;
+}
+
+.upload{
+    margin: 0 0 0 80px;
+}
+
+h2{
+    margin: 0;
+    margin: 10px 0 0 0;
+    font-size: 35px;
+}
+h4{
+    margin: 0;
+    font-size: 25px;
+}
+
+.input-container{
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.upload_container{
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-image-container{
+    height: 100%;
+    width: 60%;
+}
+
+.input-image-container2{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.img-placement{
+    position:absolute;
+    height: 50vh;
+    width: auto;
+    border-radius: 25px;
+    /* background-image: url('baybayinimg.jpg'); */
+}
+
+input{
+    margin-left: 80px;
+}

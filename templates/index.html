@@ -1,40 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <!-- <link rel="stylesheet" href="web.css"> -->
-    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='web.css') }}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600;700;800&display=swap" rel="stylesheet">
-    <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Baybayin AI</title>
-</head>
-<body>
-    <main>
-        <section class="sec-1">
-            <div class="bb-ai-container">
-                <h1 class="bb-ai">Baybayin AI</h1>
-            </div>
-            <div class="input-container">
-                <div class="input-image-container">
-                    <h1 class="upload">Upload Image</h1>
-                    <div class="upload_container">
-                        <form class="form_signin" method=post enctype="multipart/form-data" name="form1" action="">
-                            <input class="file" type="file" id="input_image" name="file" />
-                            <button class="btn-upload" type="submit">Upload image</button>
-                        </form>
-                    </div>
-                </div>
-                <div class="input-image-container2">
-                    <img class="img-placement" src="baybayinimg.jpg" alt="">
-                    <h2>Puhon</h2>
-                    <h4>78.6%</h4>
-                </div>
-            </div>
-        </section>
-    </main>
-</body>
-</html>
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Analysis Flask API</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/web.css') }}"> 
+</head>
+
+<body>
+  <main id="container">
+    <form id="upload-form" class="upl-container" method="POST" action="predict" enctype="multipart/form-data">
+      <div class="uploadOuter">
+        <div class="container">
+          <div class="row">
+          </div>
+        </div>
+        <span class="dragBox">
+          Drag and drop file here or
+          <!-- id="myfile" accept="video/*,image/*" /> -->
+        </span>
+        <div>
+        <label for="myfile" class="btn btn-primary">Select file</label> <br>
+        <input type="file" onChange="dragNdrop(event)" name="myfile" ondragover="drag()" ondrop="drop()"
+        id="myfile" />
+        </div>
+      </div>
+      <div id="preview">
+        <p id="preview-text"></p>
+        <img id="preview-img" src="" alt="">
+      </div>
+
+      <input type="submit" id="upload-btn" value="Upload file" class="btn btn-primary" />
+    </form>
+  </main>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script>
+    AWS.config.update({
+    });
+  </script>
+  <script>
+    "use strict";
+    const uploadBtn = document.getElementById('upload-btn')
+    var fileName,
+      preview = document.getElementById("preview"),
+      previewImg = document.getElementById("preview-img"),
+      previewtext = document.getElementById("preview-text");
+    function dragNdrop(event) {
+      let file = event.target.files[0]
+      if (!file)
+        return
+      fileName = URL.createObjectURL(file);
+      previewImg.setAttribute("src", fileName);
+      uploadBtn.style.display = 'block';
+      previewtext.innerHTML = `File selected: <b>${file.name}</b>`
+    }
+    function drag() {
+      document.getElementById('myfile').parentNode.className = 'draging dragBox';
+    }
+    function drop() {
+      document.getElementById('myfile').parentNode.className = 'dragBox';
+    }
+    function handleUpload() {
+      uploadBtn.disabled = true;
+      const local_server_url = `${window.location.protocol}//${window.location.hostname}:${window.location.port}`;
+    }
+  </script>
+</body>
+
+</html>

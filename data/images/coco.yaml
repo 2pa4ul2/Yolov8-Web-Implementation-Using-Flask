@@ -1,0 +1,67 @@
+# Train/val/test sets as 1) dir: path/to/imgs, 2) file: path/to/imgs.txt, or 3) list: [path/to/imgs1, path/to/imgs2, ..]
+path: ../train/images  # dataset root dir
+train: train.txt  # train images (relative to 'path')
+val: ../valid/images/val.txt  # val images (relative to 'path')
+test: ../test/images/test.txt  # test images (relative to 'path')
+
+# Classes
+names:
+  0: a
+  1: b
+  2: ba
+  3: be_bi
+  4: bo_bu
+  5: d
+  6: da
+  7: de_di
+  8: do_du
+  9: e_i
+  10: g
+  11: ga
+  12: ge_gi
+  13: go_gu
+  14: h
+  15: ha
+  16: he_hi
+  17: ho_hu
+  18: k
+  19: ka
+  20: ke_ki
+  21: ko_ku
+  22: l
+  23: la
+  24: le_li
+  25: lo_lu
+  26: m
+  27: ma
+  28: me_mi
+  29: mo_mu
+  30: n
+  31: na
+  32: ne_ni
+  33: ng
+  34: nga
+  35: nge_ngi
+  36: ngo_ngu
+  37: no_nu
+  38: o_u
+  39: p
+  40: pa
+  41: pe_pi
+  42: po_pu
+  43: s
+  44: sa
+  45: se_si
+  46: so_su
+  47: t
+  48: ta
+  49: te_ti
+  50: to_tu
+  51: w
+  52: wa
+  53: we_wi
+  54: wo_wu
+  55: y
+  56: ya
+  57: ye_yi
+  58: yo_yu
