@@ -16,26 +16,46 @@ body{
     background-size: cover;
     position: relative;
 }
-.container{
+/* .container{
     background-color: antiquewhite;
     height: 100px;
     width: 100px;
-}
+} */
 main{
-    display: flex;
-    align-items: center;
-    justify-content: center;
     gap: 1em;
     height: 100vh;
     width: 100%;
 }
 
+#label{
+    align-items: center;
+}
+
+#form-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#myfile{
+    height: 250px;
+    width: 400px;
+    background-color: #E3E6EC;
+}
+
 #title-head{
-    color: blueviolet;
     font-size: 40px;
     font-weight: 800;
     margin: 0;
+    text-align: center;
 }
+
+
+
+/* .upload-outer{
+    background-color: antiquewhite ;
+} */
 
 #preview-img{
     height: 200px;
@@ -57,61 +77,3 @@ section{
     background-color: #E3E6EC ;
     border-radius: 25px;
 }
-
-/* h1{
-    font-size: 48px;
-}
-
-.upload{
-    margin: 0 0 0 80px;
-}
-
-h2{
-    margin: 0;
-    margin: 10px 0 0 0;
-    font-size: 35px;
-}
-h4{
-    margin: 0;
-    font-size: 25px;
-}
-
-.input-container{
-    display: flex;
-    height: 100%;
-    width: 100%;
-}
-
-.upload_container{
-    height: 80%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.input-image-container{
-    height: 100%;
-    width: 60%;
-}
-
-.input-image-container2{
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.img-placement{
-    position:absolute;
-    height: 50vh;
-    width: auto;
-    border-radius: 25px;
-    /* background-image: url('baybayinimg.jpg'); */
-}
-
-/* input{
-    margin-left: 80px;
-} */ */
