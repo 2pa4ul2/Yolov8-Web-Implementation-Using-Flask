@@ -1,23 +1,15 @@
 import os
 from pathlib import Path
 
-import json # Henry
+import json
 
 
 FILE = Path(__file__).resolve()
-ROOT = FILE.parents[1]  # YOLOv8API root directory
+ROOT = FILE.parents[1]  #root directory
 RANK = int(os.getenv('RANK', -1))
     
 def update_options(request):
-    """
-    Args:
-    - request: Flask request object
-    
-    Returns:
-    - source: URL string
-    - save_txt: Boolean indicating whether to save text or not
-    """
-    
+   
     # GET parameters
     if request.method == 'GET':
         #all_args = request.args # TODO: get all parameters in one line
