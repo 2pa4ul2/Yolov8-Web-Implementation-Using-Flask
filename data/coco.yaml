@@ -65,11 +65,3 @@ names:
   56: ya
   57: ye_yi
   58: yo_yu
-
-# Roboflow Configuration
-roboflow:
-  workspace: lorence-john-ejercito-w6cx7
-  project: baybayin-text-detector-9klcl
-  version: 2
-  license: CC BY 4.0
-  url: https://universe.roboflow.com/lorence-john-ejercito-w6cx7/baybayin-text-detector-9klcl/dataset/2
