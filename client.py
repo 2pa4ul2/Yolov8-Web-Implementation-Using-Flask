@@ -13,16 +13,11 @@ print(resp.content)
 'http://0.0.0.0:5000/predict?source=https://raw.githubusercontent.com/ultralytics/ultralytics/main/ultralytics/assets/zidane.jpg'
 
 
-# ====================== Public video ====================== #
-# (Youtube or any public server). It is not ready (yet) to return all frames labeled while using save_txt=T. So, don't try it!
-
 resp = requests.get('http://0.0.0.0:5000/predict?source=https://www.youtube.com/watch?v=MNn9qKG2UFI',
                     verify=False)
 
-# You can also copy and paste the following url in your browser
 'http://0.0.0.0:5000/predict?source=https://www.youtube.com/watch?v=MNn9qKG2UFI'
 
-# ====================== Send local file ==================== #
 
 
 url = 'http://0.0.0.0:5000/predict'
