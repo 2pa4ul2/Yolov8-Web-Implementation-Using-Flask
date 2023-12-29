@@ -22,7 +22,7 @@ app = Flask(__name__)
 
 def predict(opt):
     
-    opt.conf = 0.7 
+    opt.conf = 0.5 
     results = model(**vars(opt), stream=True)
 
     for result in results:
