@@ -1,3 +1,7 @@
+*{
+    font-family: 'Poppins', sans-serif;
+}
+
 body{
     margin: 0;
     padding: 0;
@@ -12,17 +16,31 @@ body{
     background-size: cover;
     position: relative;
 }
-
+.container{
+    background-color: antiquewhite;
+    height: 100px;
+    width: 100px;
+}
 main{
-    position: absolute;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 1em;
     height: 100vh;
     width: 100%;
-    color: #E3E6EC;
 }
+
+#title-head{
+    color: blueviolet;
+    font-size: 40px;
+    font-weight: 800;
+    margin: 0;
+}
+
+#preview-img{
+    height: 200px;
+}
+
 
 section{
     height: 100%;
@@ -40,7 +58,7 @@ section{
     border-radius: 25px;
 }
 
-h1{
+/* h1{
     font-size: 48px;
 }
 
@@ -94,6 +112,6 @@ h4{
     /* background-image: url('baybayinimg.jpg'); */
 }
 
-input{
+/* input{
     margin-left: 80px;
-}
+} */ */

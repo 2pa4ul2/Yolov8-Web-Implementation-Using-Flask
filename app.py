@@ -17,7 +17,7 @@ if str(ROOT) not in sys.path:
 ROOT = Path(os.path.relpath(ROOT, Path.cwd()))
 
 # Initialize Flask API
-app = Flask(__name__, static_url_path='/static')
+app = Flask(__name__)
 
 
 def predict(opt):
