@@ -1,16 +1,40 @@
 body {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     margin: 0;
     background-image: url("/static/bg.png");
     background-repeat:no-repeat ;
     background-size: cover;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
   }
   
+  main{
+    height: 100%;
+    width: 100%;
+  }
+
+  h1{
+    margin: 20px 0 0 0 ;
+    text-align: center;
+    color: #fff;
+    font-weight: 800;
+  }
 
   #container {
-    display: block;
+    background-color: #86000B;
     margin: auto;
-    width: 100%;
+    width: 70%;
+    height: 90%;
+    border-radius: 25px;
+  }
+
+  #select-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .img-container,
@@ -29,7 +53,6 @@ body {
   .uploadOuter {
     text-align: left;
     padding: 20px;
-    margin-top: 64px;
   }
 
   .uploadOuter strong {
@@ -64,13 +87,20 @@ body {
     transform: scale(1.1);
   }
 
+  #preview-container{
+    height: 200px;
+    width: 200px;
+  }
+
   #preview {
     display: flex;
     justify-content: center;
+    align-items: center;
   }
-  #preview img {
-    max-width: 70%
-  }
+  /* #preview img {
+    max-width: 50%
+  } */
+  
 
   .btn {
     display: inline-block;
