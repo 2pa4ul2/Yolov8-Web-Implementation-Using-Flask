@@ -1,7 +1,11 @@
 body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     margin: 0;
+    background-image: url("/static/bg.png");
+    background-repeat:no-repeat ;
+    background-size: cover;
   }
+  
 
   #container {
     display: block;
@@ -65,7 +69,7 @@ body {
     justify-content: center;
   }
   #preview img {
-    max-width: 100%
+    max-width: 70%
   }
 
   .btn {
@@ -108,6 +112,14 @@ body {
     opacity: .6;
     cursor: progress;
   }
+
+#preview{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 
   p#preview-text {
     text-align: center;

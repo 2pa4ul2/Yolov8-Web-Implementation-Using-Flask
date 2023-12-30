@@ -4,6 +4,7 @@ import argparse
 import os
 import sys
 from pathlib import Path
+from datetime import datetime
 
 from ultralytics import YOLO
 from ultralytics.utils.checks import cv2, print_args
@@ -20,19 +21,22 @@ ROOT = Path(os.path.relpath(ROOT, Path.cwd()))
 app = Flask(__name__)
 
 
-def predict(opt):
-    
-    opt.conf = 0.5 
+def predict(opt, save_path=None):
+    opt.conf = 0.5
     results = model(**vars(opt), stream=True)
 
-    for result in results:
+    for i, result in enumerate(results):
         if opt.save_txt:
             result_json = json.loads(result.tojson())
             yield json.dumps({'results': result_json})
         else:
-            im0 = cv2.imencode('.jpg', result.plot())[1].tobytes()
+            im0 = result.plot()
+            timestamp = datetime.now().strftime("%Y%m%d%H%M%S%f")  # Generate a timestamp
+            im_path = save_path / f"result_image_{timestamp}_{i}.jpg"  # Unique filename with timestamp
+            cv2.imwrite(str(im_path), im0)
+            im_bytes = cv2.imencode('.jpg', im0)[1].tobytes()
             yield (b'--frame\r\n'
-                   b'Content-Type: image/jpeg\r\n\r\n' + im0 + b'\r\n')
+                   b'Content-Type: image/jpeg\r\n\r\n' + im_bytes + b'\r\n')
 
 
 @app.route('/')
@@ -44,7 +48,7 @@ def index():
 def video_feed():
     if request.method == 'POST':
         uploaded_file = request.files.get('myfile')
-        save_txt = request.form.get('save_txt', 'F') 
+        save_txt = request.form.get('save_txt', 'F')
 
         if uploaded_file:
             source = Path(__file__).parent / raw_data / uploaded_file.filename
@@ -52,13 +56,16 @@ def video_feed():
             opt.source = source
         else:
             opt.source, _ = update_options(request)
-            
-        opt.save_txt = True if save_txt == 'T' else False
-            
-    elif request.method == 'GET':
-        opt.source, opt.save_txt = update_options(request)
 
-    return Response(predict(opt), mimetype='multipart/x-mixed-replace; boundary=frame')
+        opt.save_txt = True if save_txt == 'T' else False
+
+        result_path = Path(__file__).parent / 'results'  # Define the path to save the images
+        result_path.mkdir(parents=True, exist_ok=True)
+
+        return Response(predict(opt, save_path=result_path), mimetype='multipart/x-mixed-replace; boundary=frame')
+
+    return render_template('index.html')
+
 
 
 
