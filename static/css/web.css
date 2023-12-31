@@ -23,8 +23,15 @@ body {
     font-weight: 800;
   }
 
+  #preview-text{
+    color: white;
+  }
+
   #container {
-    background-color: #86000B;
+    background: rgba( 255, 255, 255, 0.1 );
+    box-shadow: 0 8px 32px 0 rgba(31, 0, 0, 0.37);
+    backdrop-filter: blur( 8px );
+    -webkit-backdrop-filter: blur( 8px );
     margin: auto;
     width: 70%;
     height: 90%;

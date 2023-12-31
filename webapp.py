@@ -39,7 +39,13 @@ def predict(opt, save_path=None):
                    b'Content-Type: image/jpeg\r\n\r\n' + im_bytes + b'\r\n')
 
 
+# Splash page
 @app.route('/')
+def splash():
+    return render_template('base.html')
+
+# Index page
+@app.route('/index')
 def index():
     return render_template('index.html')
 

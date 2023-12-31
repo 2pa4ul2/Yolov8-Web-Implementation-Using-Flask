@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css')}}">
+    <link rel="shortcut icon" href="static\background\logo.png" type="image/x-icon">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Splash Page</title>
+    <!-- Add any additional CSS or styles here -->
+</head>
+
+<body>
+
+    <img id="bgbase" src="static\base.jpg">
+    <div id="container">
+        <img src="static\background\bgbase.png" alt="">
+        <h1>Artificial Intelligence</h1>
+        <a href="{{ url_for('index') }}" class="btn btn-primary">Start</a>
+    </div>
+    <!-- Add any additional scripts or HTML content here -->
+</body>
+
+</html>
