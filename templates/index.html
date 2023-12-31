@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Image Analysis Flask API</title>
+  <title>Baybayin</title>
   <!-- CSS only -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
@@ -20,26 +20,32 @@
 
 <body >
     <main id="container">
-      <h1>Baybayin AI</h1>
-      <form id="upload-form" class="upl-container" method="POST" action="predict" enctype="multipart/form-data">
-        <div class="uploadOuter">
-          <span class="dragBox">
-            Drag and drop file here <br>
-            <input type="file" onChange="dragNdrop(event)" name="myfile" ondragover="drag()" ondrop="drop()"
-              id="myfile" />
-          </span>
-          <div id="select-button">
-          <label for="myfile" class="btn btn-primary">Select file</label>
-          </div>
-          <div id="preview">
-            <p id="preview-text"></p>
-            <div id="preview-container">
-              <img id="preview-img" src="" alt="">
-              <input type="submit" id="upload-btn" value="Upload file" class="btn btn-primary" />
+      <div id="upload-logo">
+        <div id="index-img">
+          <h1>Baybayin AI</h1>
+          <img id="logo-main" src="static\background\logo.png">
+        </div>
+        <form id="upload-form" class="upl-container" method="POST" action="{{ url_for('index') }}" enctype="multipart/form-data">
+          <div class="uploadOuter">
+            <span class="dragBox">
+              Drag and drop file here <br>
+              <input type="file" onChange="dragNdrop(event)" name="myfile" ondragover="drag()" ondrop="drop()"
+                id="myfile" />
+            </span>
+            <div id="select-button">
+              <label for="myfile" class="btn btn-primary">Select file</label>
+            </div>
+            <div id="preview">
+              <p id="preview-text"></p>
+              <div id="preview-container">
+                <img id="preview-img" src="{{ url_for('static', filename='background/logo.png') }}" alt="">
+                <input type="submit" id="upload-btn" value="Upload file" class="btn btn-primary" />
+            </div>
             </div>
           </div>
-        </div>
-      </form>
+        </form>
+        
+      </div>
     </main>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script>

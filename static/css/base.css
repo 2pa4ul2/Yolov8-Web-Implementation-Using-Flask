@@ -47,7 +47,10 @@ body {
     list-style-type: none;
     text-decoration: none;
     color: white;
-    padding: 30px 20px 30px 20px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    padding: 20px;
     border: 2px solid white;
     border-radius: 100%;
   }
@@ -58,4 +61,10 @@ body {
     transform: scale(1.1);
     transition: ease-in-out 1s;
 
+  }
+
+  #links{
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
   }

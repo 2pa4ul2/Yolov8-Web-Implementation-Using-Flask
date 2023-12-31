@@ -1,4 +1,4 @@
-from flask import Flask, render_template, Response, request
+from flask import Flask, render_template, request, redirect, url_for
 import json
 import argparse
 import os
@@ -20,7 +20,6 @@ ROOT = Path(os.path.relpath(ROOT, Path.cwd()))
 # Initialize Flask API
 app = Flask(__name__)
 
-
 def predict(opt, save_path=None):
     opt.conf = 0.5
     results = model(**vars(opt), stream=True)
@@ -38,20 +37,36 @@ def predict(opt, save_path=None):
             yield (b'--frame\r\n'
                    b'Content-Type: image/jpeg\r\n\r\n' + im_bytes + b'\r\n')
 
-
 # Splash page
 @app.route('/')
 def splash():
     return render_template('base.html')
 
+@app.route('/gallery', methods=['GET', 'POST'])
+def gallery():
+    return render_template('gallery.html')
+
+@app.route('/about', methods=['GET', 'POST'])
+def about():
+    return render_template('about.html')
+
+@app.route('/detection', methods=['GET', 'POST'])
+def detection():
+    # Get the most recent image in the 'results' folder
+    result_path = Path(__file__).parent / 'results'
+    list_of_images = sorted(result_path.glob('result_image_*.jpg'), key=os.path.getmtime, reverse=True)
+
+    # Get the path of the most recent image
+    if list_of_images:
+        most_recent_image = list_of_images[0]
+    else:
+        most_recent_image = None
+
+    return render_template('detection.html', most_recent_image=most_recent_image)
+
 # Index page
-@app.route('/index')
+@app.route('/index', methods=['GET', 'POST'])
 def index():
-    return render_template('index.html')
-
-
-@app.route('/predict', methods=['GET', 'POST'])
-def video_feed():
     if request.method == 'POST':
         uploaded_file = request.files.get('myfile')
         save_txt = request.form.get('save_txt', 'F')
@@ -68,7 +83,14 @@ def video_feed():
         result_path = Path(__file__).parent / 'results'  # Define the path to save the images
         result_path.mkdir(parents=True, exist_ok=True)
 
-        return Response(predict(opt, save_path=result_path), mimetype='multipart/x-mixed-replace; boundary=frame')
+        # Run prediction and save images
+        predictions = list(predict(opt, save_path=result_path))
+
+        # Get list of saved filenames
+        saved_filenames = [f"result_image_{i}.jpg" for i in range(len(predictions))]
+
+        # Render the template with the updated list of saved filenames
+        return render_template('index.html', saved_filenames=saved_filenames)
 
     return render_template('index.html')
 

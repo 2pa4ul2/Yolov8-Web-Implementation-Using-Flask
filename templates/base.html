@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Splash Page</title>
+    <title>Main screen</title>
     <!-- Add any additional CSS or styles here -->
 </head>
 
@@ -15,7 +15,11 @@
     <div id="container">
         <img src="static\background\bgbase.png" alt="">
         <h1>Artificial Intelligence</h1>
-        <a href="{{ url_for('index') }}" class="btn btn-primary">Start</a>
+        <div  id="links">
+            <a href="{{ url_for('index') }}" class="btn btn-primary"><img src="static\icons\eye.png"></a>
+            <a href="{{ url_for('gallery') }}" class="btn btn-primary"><img src="static\icons\gallery.png"></a>
+            <a href="{{ url_for('about') }}" class="btn btn-primary"><img src="static\icons\information.png"></a>
+        </div>
     </div>
     <!-- Add any additional scripts or HTML content here -->
 </body>
