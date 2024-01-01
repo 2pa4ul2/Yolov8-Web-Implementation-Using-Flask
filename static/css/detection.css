@@ -25,10 +25,11 @@ body {
       }
 
       #container {
-        background: rgba( 255, 255, 255, 0.1 );
-        backdrop-filter: blur( 20px );
-        -webkit-backdrop-filter: blur( 20px );
-        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.04);
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(6.4px);
+        -webkit-backdrop-filter: blur(6.4px);
         border: 5px solid rgba(255, 255, 255, 0.671);
         margin: auto;
         width: 70%;
@@ -48,15 +49,47 @@ body {
         display: flex;
         flex-direction: column;
         align-items: center;
-        background: rgba(255, 255, 255, 0.253);
-        backdrop-filter: blur( 14.5px );
-        -webkit-backdrop-filter: blur( 14.5px );
-        border-radius: 25px 21px 21px 25px;
-        border: 1px solid rgba( 255, 255, 255, 0.18 );
+        background: rgba(255, 255, 255, 0.38);
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(6.4px);
+        -webkit-backdrop-filter: blur(6.4px);
+        border: 1px solid rgba(255, 255, 255, 1);
         width:60%;
         height: 90%;
         border-radius: 23px;
       }
       #saved{
-        height: 450px;
+        height: 400px;
+      }
+      h1{
+        color: #fff;
+        font-weight: 600;
+      }
+      #label-container{
+        background: rgba(255, 255, 255, 0.04);
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(6.4px);
+        -webkit-backdrop-filter: blur(6.4px);
+        border: 1px solid rgba(255, 255, 255, 1);
+        margin: 10px 0 0 0;
+        width: 400px;
+        height: 50px;
+      }
+      #definition-container{
+        background: rgba(255, 255, 255, 0.04);
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(6.4px);
+        -webkit-backdrop-filter: blur(6.4px);
+        border: 1px solid rgba(255, 255, 255, 1);
+        margin: 10px 0 0 0;
+        width: 400px;
+        height: 200px;
+        text-wrap: wrap;
+      }
+      #definition-container p{
+        font-size: 14px;
+        margin: 10px 10px 0 ;
       }

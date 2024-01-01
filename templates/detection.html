@@ -3,6 +3,7 @@
 
 <head>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/detection.css')}}">
+    <link rel="shortcut icon" href="static\background\logo.png" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detection Page</title>
@@ -14,12 +15,18 @@
     <main id="container">
       <div id="upload-logo">
         <div id="upload-form">
-            <h1>Baybayin AI</h1>
+                <h1>Baybayin AI</h1>
                 {% if most_recent_image %}
                     <img id="saved" src="{{ url_for('static', filename='results/' + most_recent_image.name) }}">
                 {% else %}
                     <p>No images found</p>
                 {% endif %}
+                <div id="label-container">
+                    <p></p>
+                </div>
+                <div id="definition-container">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium ex sed nostrum ducimus alias facere, quo voluptate veniam iusto rerum sunt quasi similique, est explicabo possimus. Natus et sit alias!</p>
+                </div>
           </div>
       </div>
     </main>
