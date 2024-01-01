@@ -1,23 +1,28 @@
-<!-- detection.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/detection.css')}}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detection Page</title>
-    <!-- Add any additional CSS or styles here -->
+
 </head>
 
 <body>
-    <h1>Most Recent Image</h1>
-
-    <div id="detection-button-container">
-        <a href="{{ url_for('detection') }}" class="btn btn-primary">View Detection</a>
-    </div>
-
-    <!-- Add any additional scripts or HTML content here -->
+    <div id="bgbase"></div>
+    <main id="container">
+      <div id="upload-logo">
+        <div id="upload-form">
+            <h1>Baybayin AI</h1>
+                {% if most_recent_image %}
+                    <img id="saved" src="{{ url_for('static', filename='results/' + most_recent_image.name) }}">
+                {% else %}
+                    <p>No images found</p>
+                {% endif %}
+          </div>
+      </div>
+    </main>
 </body>
 
 </html>

@@ -44,6 +44,10 @@ body {
   }
 
   a{
+    background: rgba( 255, 255, 255, 0.1 );
+    box-shadow: 0 8px 32px 0 rgba(31, 0, 0, 0.37);
+    backdrop-filter: blur( 8px );
+    -webkit-backdrop-filter: blur( 8px );
     list-style-type: none;
     text-decoration: none;
     color: white;
@@ -51,16 +55,14 @@ body {
     align-content: center;
     justify-content: center;
     padding: 20px;
-    border: 2px solid white;
+    border: 1px solid white;
     border-radius: 100%;
   }
 
   a:hover{
-    background-color: brown;
     color: white;
     transform: scale(1.1);
-    transition: ease-in-out 1s;
-
+    transition: ease-in-out .7s;
   }
 
   #links{

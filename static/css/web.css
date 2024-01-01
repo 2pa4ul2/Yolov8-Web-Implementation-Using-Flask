@@ -1,7 +1,7 @@
 body {
     font-family: 'Montserrat', sans-serif;
     margin: 0;
-    background-image: url("/static/bg.png");
+    background-image: url("/static/base.jpg");
     background-repeat:no-repeat ;
     background-size: cover;
     display:flex;
@@ -15,13 +15,21 @@ body {
     height: 100%;
     width: 100%;
   }
+      #bgbase{
+        z-index: 0;
+        background-color: rgba(0, 0, 0, 0.75);
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        filter: brightness(30%);
+      }
 
       #container {
         background: rgba( 255, 255, 255, 0.1 );
-        box-shadow: 0 8px 32px 0 rgba(31, 0, 0, 0.37);
-        backdrop-filter: blur( 8px );
-        -webkit-backdrop-filter: blur( 8px );
-        border: 1px solid rgba( 255, 255, 255, 0.18 );
+        backdrop-filter: blur( 20px );
+        -webkit-backdrop-filter: blur( 20px );
+        border-radius: 10px;
+        border: 5px solid rgba(255, 255, 255, 0.671);
         margin: auto;
         width: 70%;
         height: 90%;
@@ -51,10 +59,14 @@ body {
       }
 
       #upload-form{
-          width: 100%;
-          height: 100%;
-          background-color: white;
-          border-radius: 25px;
+        background: rgba(255, 255, 255, 0.253);
+        backdrop-filter: blur( 14.5px );
+        -webkit-backdrop-filter: blur( 14.5px );
+        border-radius: 25px 21px 21px 25px;
+        border: 1px solid rgba( 255, 255, 255, 0.18 );
+        width: 100%;
+        height: 100%;
+        border-radius: 23 px;
       }
       h1{
         font-size: 50px;
@@ -70,11 +82,22 @@ body {
         font-size: 10px;
       }
       .btn-primary {
-        color: rgb(37, 37, 37);
-        background-color: #fefeff;
-        border: 2px solid black;
-        width: 200px;
-        height: 48px;
+        font-size: 14px;
+        background-color: white;
+        color: black;
+        /* background: linear-gradient(198deg, #90c8ff 0%, #fba7ff 100%); */
+        padding: 10px 50px;
+        /* border: solid #0080ff 2px; */
+        border: none;
+        /* box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px; */
+        border-radius: 11px;
+        transition : 1000ms;
+        transform: translateY(0);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        cursor: pointer;
+        
       }
     
       #upload-btn {
@@ -88,10 +111,14 @@ body {
       }
 
       .btn-primary:hover {
-        color: #fff;
-        background-color: #1f1f1f;
-        box-shadow: rgba(29, 29, 29, 0.25) 0 8px 15px;
-        transform: translateY(-2px);
+        transition : 1000ms;
+        padding: 10px 65px;
+        transform : translateY(-0px);
+        background-color: #fff;
+        /* background: linear-gradient(198deg, #90c8ff 0%, #fba7ff 100%); */
+        color: black;
+        /* border: solid 2px #a1d0ff; */
+        border: none;
       }
       
       .btn-primary:active {
@@ -104,12 +131,40 @@ body {
         align-items: center;
         justify-content: center;
       }
+      .dragBox {
+        width: 500px;
+        height: 200px;
+        margin: 15px auto;
+        position: relative;
+        text-align: center;
+        font-weight: bold;
+        line-height: 200px;
+        color: #999;
+        border: 2px dashed #ccc;
+        border-radius: 25px;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.3s;
+      }
+    
+      .dragBox input[type="file"] {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        opacity: 0;
+        top: 0;
+        left: 0;
+      }
+    
+      .draging {
+        transform: scale(1.1);
+      }
 
 
   #preview img {
     display: block;
     margin-top: 30px;
-    width: 50%;
+    width: 40%;
     min-width: 10px;
     margin: 0;
     align-self: center;
@@ -123,34 +178,6 @@ body {
 
   .uploadOuter strong {
     padding: 0 10px;
-  }
-
-  .dragBox {
-    width: 500px;
-    height: 200px;
-    margin: 32px auto;
-    position: relative;
-    text-align: center;
-    font-weight: bold;
-    line-height: 200px;
-    color: #999;
-    border: 2px dashed #ccc;
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.3s;
-  }
-
-  .dragBox input[type="file"] {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    opacity: 0;
-    top: 0;
-    left: 0;
-  }
-
-  .draging {
-    transform: scale(1.1);
   }
 
   #preview-container{

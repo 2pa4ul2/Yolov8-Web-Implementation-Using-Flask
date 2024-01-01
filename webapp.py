@@ -1,10 +1,11 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for,send_from_directory
 import json
 import argparse
 import os
 import sys
 from pathlib import Path
 from datetime import datetime
+from PIL import Image
 
 from ultralytics import YOLO
 from ultralytics.utils.checks import cv2, print_args
@@ -19,6 +20,7 @@ ROOT = Path(os.path.relpath(ROOT, Path.cwd()))
 
 # Initialize Flask API
 app = Flask(__name__)
+app.config['IMAGE_RESULTS'] = "static/results"
 
 def predict(opt, save_path=None):
     opt.conf = 0.5
@@ -30,8 +32,8 @@ def predict(opt, save_path=None):
             yield json.dumps({'results': result_json})
         else:
             im0 = result.plot()
-            timestamp = datetime.now().strftime("%Y%m%d%H%M%S%f")  # Generate a timestamp
-            im_path = save_path / f"result_image_{timestamp}_{i}.jpg"  # Unique filename with timestamp
+            timestamp = datetime.now().strftime("%Y%m%d%H%M%S%f")
+            im_path = save_path / f"result_image_{timestamp}_{i}.jpg"
             cv2.imwrite(str(im_path), im0)
             im_bytes = cv2.imencode('.jpg', im0)[1].tobytes()
             yield (b'--frame\r\n'
@@ -42,28 +44,40 @@ def predict(opt, save_path=None):
 def splash():
     return render_template('base.html')
 
+#gallery page
 @app.route('/gallery', methods=['GET', 'POST'])
 def gallery():
     return render_template('gallery.html')
+
+# @app.route('/gallery', methods=['GET', 'POST'])
+# def gallery():
+#     pics = os.path.join(app.config["UPLOAD_FOLDER"], 'result_image.jpg')
+
+#     imagelist = os.listdir('results')
+#     imagelist = ['results/' + image for image in imagelist]
+#     return render_template('gallery.html', imagelist=imagelist)
+
 
 @app.route('/about', methods=['GET', 'POST'])
 def about():
     return render_template('about.html')
 
+
+#Detection page
 @app.route('/detection', methods=['GET', 'POST'])
 def detection():
-    # Get the most recent image in the 'results' folder
-    result_path = Path(__file__).parent / 'results'
+    saved_filenames = request.args.getlist('filenames')
+    result_path = Path(__file__).parent / 'static' / 'results'
     list_of_images = sorted(result_path.glob('result_image_*.jpg'), key=os.path.getmtime, reverse=True)
 
-    # Get the path of the most recent image
     if list_of_images:
         most_recent_image = list_of_images[0]
     else:
         most_recent_image = None
 
-    return render_template('detection.html', most_recent_image=most_recent_image)
-
+    return render_template('detection.html', most_recent_image=most_recent_image, saved_filenames=saved_filenames)
+    
+    
 # Index page
 @app.route('/index', methods=['GET', 'POST'])
 def index():
@@ -80,18 +94,13 @@ def index():
 
         opt.save_txt = True if save_txt == 'T' else False
 
-        result_path = Path(__file__).parent / 'results'  # Define the path to save the images
+        result_path = Path(__file__).parent / 'static' / 'results'  
         result_path.mkdir(parents=True, exist_ok=True)
-
-        # Run prediction and save images
         predictions = list(predict(opt, save_path=result_path))
 
-        # Get list of saved filenames
         saved_filenames = [f"result_image_{i}.jpg" for i in range(len(predictions))]
 
-        # Render the template with the updated list of saved filenames
-        return render_template('index.html', saved_filenames=saved_filenames)
-
+        return redirect(url_for('detection', filenames=saved_filenames))
     return render_template('index.html')
 
 
