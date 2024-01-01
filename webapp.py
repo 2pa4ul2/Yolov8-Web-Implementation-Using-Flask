@@ -47,15 +47,15 @@ def splash():
 #gallery page
 @app.route('/gallery', methods=['GET', 'POST'])
 def gallery():
-    return render_template('gallery.html')
+    # Get the path to the "results" folder
+    result_path = Path(__file__).parent / 'static' / 'results'
 
-# @app.route('/gallery', methods=['GET', 'POST'])
-# def gallery():
-#     pics = os.path.join(app.config["UPLOAD_FOLDER"], 'result_image.jpg')
+    # Get the list of image filenames in the "results" folder
+    image_filenames = sorted(result_path.glob('result_image_*.jpg'), key=os.path.getmtime, reverse=True)
 
-#     imagelist = os.listdir('results')
-#     imagelist = ['results/' + image for image in imagelist]
-#     return render_template('gallery.html', imagelist=imagelist)
+    # Pass the list of image filenames to the template
+    return render_template('gallery.html', image_filenames=image_filenames)
+
 
 
 @app.route('/about', methods=['GET', 'POST'])

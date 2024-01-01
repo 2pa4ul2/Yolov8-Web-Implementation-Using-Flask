@@ -1,17 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css')}}">
-    <link rel="shortcut icon" href="static\background\logo.png" type="image/x-icon">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="static\background\logo.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/gallery.css')}}">
     <title>Gallery</title>
 </head>
 <body>
-    <!-- {% for imagelist in imagelist %}
-    <img src="{{url_for('static', filename ='/results' + imagelist)}}" alt="">
-    {% endfor %} -->
-    <h1>helloworld</h1>
-    
+    <div id="bgbase"></div>
+    <div id="container">
+        <h1>Prediction Gallery</h1>
+        <div id="image-container">
+            {% if image_filenames %}
+            {% for image_filename in image_filenames %}
+                <img class="images" src="{{ url_for('static', filename='results/' + image_filename.name) }}">
+            {% endfor %}
+            {% else %}
+                <p>No images found</p>
+            {% endif %}
+        </div>
+    </div>
 </body>
 </html>
