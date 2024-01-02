@@ -27,6 +27,7 @@
         </div>
         <form id="upload-form" class="upl-container" method="POST" action="{{ url_for('index') }}" enctype="multipart/form-data">
           <div class="uploadOuter">
+            <h2>Upload Image</h2>
             <span class="dragBox">
               Drag and drop file here <br>
               <input type="file" onChange="dragNdrop(event)" name="myfile" ondragover="drag()" ondrop="drop()"
