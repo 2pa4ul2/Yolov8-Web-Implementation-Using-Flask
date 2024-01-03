@@ -16,16 +16,23 @@
       <div id="upload-logo">
         <div id="upload-form">
                 <h1>Baybayin AI</h1>
-                {% if most_recent_image %}
-                    <img id="saved" src="{{ url_for('static', filename='results/' + most_recent_image.name) }}">
-                {% else %}
-                    <p>No images found</p>
-                {% endif %}
-                <div id="label-container">
-                    <p></p>
-                </div>
-                <div id="definition-container">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium ex sed nostrum ducimus alias facere, quo voluptate veniam iusto rerum sunt quasi similique, est explicabo possimus. Natus et sit alias!</p>
+                <div id="all-container">
+                    <div id="img-result">
+                        {% if most_recent_image %}
+                            <img id="saved" src="{{ url_for('static', filename='results/' + most_recent_image.name) }}">
+                        {% else %}
+                            <p>No images found</p>
+                        {% endif %}
+                    </div>
+                    <div id="main-text">
+                        <div id="label-container">
+                            <p></p>
+                        </div>
+                        <div id="definition-container">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium ex sed nostrum ducimus alias facere, quo voluptate veniam iusto rerum sunt quasi similique, est explicabo possimus. Natus et sit alias!</p>
+                        </div>
+                        <div class="ani-cir"><a href="{{ url_for('gallery') }}" class="btn btn-primary">Go to Gallery</a></div>
+                    </div>
                 </div>
           </div>
       </div>

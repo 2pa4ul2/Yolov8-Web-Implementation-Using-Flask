@@ -15,12 +15,31 @@
         <div id="image-container">
             {% if image_filenames %}
             {% for image_filename in image_filenames %}
-                <img class="images" src="{{ url_for('static', filename='results/' + image_filename.name) }}">
+                <img class="images" src="{{ url_for('static', filename='results/' + image_filename.name) }}" onclick="openModal(this)">
             {% endfor %}
             {% else %}
                 <p>No images found</p>
             {% endif %}
         </div>
     </div>
+
+    <div id="myModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImg">
+    </div>
+
+    <script>
+        function openModal(img) {
+            var modal = document.getElementById("myModal");
+            var modalImg = document.getElementById("modalImg");
+            modal.style.display = "block";
+            modalImg.src = img.src;
+        }
+
+        function closeModal() {
+            var modal = document.getElementById("myModal");
+            modal.style.display = "none";
+        }
+    </script>
 </body>
 </html>
