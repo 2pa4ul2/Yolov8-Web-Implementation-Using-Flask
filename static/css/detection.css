@@ -55,12 +55,12 @@ body {
         backdrop-filter: blur(6.4px);
         -webkit-backdrop-filter: blur(6.4px);
         border: 1px solid rgba(255, 255, 255, 1);
-        width:90%;
+        width:50%;
         height: 90%;
         border-radius: 23px;
       }
       #saved{
-        height: 400px;
+        height: 80%;
       }
       h1{
         color: #fff;
@@ -114,8 +114,8 @@ body {
       }
 
       #img-result{
-        height:50%;
-        width: 50%; 
+        height:80%;
+        width: 80%; 
         display: flex;
         justify-content: center;
         align-items: center;

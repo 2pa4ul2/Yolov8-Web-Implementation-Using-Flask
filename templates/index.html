@@ -21,12 +21,9 @@
   <div id="bgbase"></div>
     <main id="container">
       <div id="upload-logo">
-        <div id="index-img">
-          <h1>Baybayin AI</h1>
-          <img id="logo-main" src="static\background\logo.png">
-        </div>
         <form id="upload-form" class="upl-container" method="POST" action="{{ url_for('index') }}" enctype="multipart/form-data">
-          <div class="uploadOuter">
+          
+          <div id="index-img">
             <h2>Upload Image</h2>
             <span class="dragBox">
               Drag and drop file here <br>
@@ -36,6 +33,9 @@
             <div id="select-button">
               <label for="myfile" class="btn btn-primary">Select file</label>
             </div>
+          </div>
+          
+          <div class="uploadOuter">
             <div id="preview">
               <p id="preview-text"></p>
               <div id="preview-container">
@@ -44,6 +44,7 @@
               </div>
             </div>
           </div>
+
         </form>
       </div>
     </main>
