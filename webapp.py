@@ -5,7 +5,6 @@ import os
 import sys
 from pathlib import Path
 from datetime import datetime
-from PIL import Image
 
 from ultralytics import YOLO
 from ultralytics.utils.checks import cv2, print_args
@@ -112,31 +111,7 @@ if __name__ == '__main__':
     parser.add_argument('--model','--weights', type=str, default=ROOT / 'best.pt', help='model path or triton URL')
     parser.add_argument('--source', type=str, default=ROOT / 'data/images', help='source directory for images or videos')
     parser.add_argument('--conf','--conf-thres', type=float, default=0.33, help='object confidence threshold for detection')
-    parser.add_argument('--iou', '--iou-thres', type=float, default=0.7, help='intersection over union (IoU) threshold for NMS')
     parser.add_argument('--imgsz', '--img', '--img-size', nargs='+', type=int, default=[640], help='image size as scalar or (h, w) list, i.e. (640, 480)')
-    parser.add_argument('--half', action='store_true', help='use half precision (FP16)')
-    parser.add_argument('--device', default='', help='device to run on, i.e. cuda device=0/1/2/3 or device=cpu')
-    parser.add_argument('--show','--view-img', default=False, action='store_true', help='show results if possible')
-    parser.add_argument('--save', action='store_true', help='save images with results')
-    parser.add_argument('--save_txt','--save-txt', action='store_true', help='save results as .txt file')
-    parser.add_argument('--save_conf', '--save-conf', action='store_true', help='save results with confidence scores')
-    parser.add_argument('--save_crop', '--save-crop', action='store_true', help='save cropped images with results')
-    parser.add_argument('--show_labels','--show-labels', default=True, action='store_true', help='show labels')
-    parser.add_argument('--show_conf', '--show-conf', default=True, action='store_true', help='show confidence scores')
-    parser.add_argument('--max_det','--max-det', type=int, default=300, help='maximum number of detections per image')
-    parser.add_argument('--vid_stride', '--vid-stride', type=int, default=1, help='video frame-rate stride')
-    parser.add_argument('--stream_buffer', '--stream-buffer', default=False, action='store_true', help='buffer all streaming frames (True) or return the most recent frame (False)')
-    parser.add_argument('--line_width', '--line-thickness', default=None, type=int, help='The line width of the bounding boxes. If None, it is scaled to the image size.')
-    parser.add_argument('--visualize', default=False, action='store_true', help='visualize model features')
-    parser.add_argument('--augment', default=False, action='store_true', help='apply image augmentation to prediction sources')
-    parser.add_argument('--agnostic_nms', '--agnostic-nms', default=False, action='store_true', help='class-agnostic NMS')
-    parser.add_argument('--retina_masks', '--retina-masks', default=False, action='store_true', help='whether to plot masks in native resolution')
-    parser.add_argument('--classes', type=list, help='filter results by class, i.e. classes=0, or classes=[0,2,3]') # 'filter by class: --classes 0, or --classes 0 2 3')
-    parser.add_argument('--boxes', default=True, action='store_false', help='Show boxes in segmentation predictions')
-    parser.add_argument('--exist_ok', '--exist-ok', action='store_true', help='existing project/name ok, do not increment')
-    parser.add_argument('--project', default=ROOT / 'runs/detect', help='save results to project/name')
-    parser.add_argument('--name', default='exp', help='save results to project/name')
-    parser.add_argument('--dnn', action='store_true', help='use OpenCV DNN for ONNX inference')
     parser.add_argument('--raw_data', '--raw-data', default=ROOT / 'data/raw', help='save raw images to data/raw')
     parser.add_argument('--port', default=5000, type=int, help='port deployment')
     opt, unknown = parser.parse_known_args()

@@ -114,8 +114,8 @@ body {
       }
 
       #img-result{
-        height: 70%;
-        width: 70%; 
+        height:50%;
+        width: 50%; 
         display: flex;
         justify-content: center;
         align-items: center;
