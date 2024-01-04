@@ -1,9 +1,6 @@
 body {
     font-family: 'Montserrat', sans-serif;
     margin: 0;
-    background-image: url("/static/base.png");
-    background-repeat:no-repeat ;
-    background-size: cover;
     display:flex;
     align-items: center;
     justify-content: center;
@@ -14,6 +11,7 @@ body {
 
   h1{
     justify-content: end;
+    color: white;
   }
 
   #bgbase{
@@ -21,11 +19,7 @@ body {
     position: absolute;
     height: 100%;
     width: 100%;
-    filter: brightness(30%);
-  }
-
-  h1{
-    color: white;
+    filter: brightness(15%);
   }
 
   #container{

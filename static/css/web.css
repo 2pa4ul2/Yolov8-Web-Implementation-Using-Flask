@@ -46,6 +46,7 @@ body {
 
       #upload-logo{
         display: flex;
+        
         justify-content: center;
         align-items: center;
         height: 100%;
@@ -57,21 +58,24 @@ body {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        width: 70%;
+        width: 100%;
         height: 100%;
-      }
-      img #logo-main{
-        height: 100px;
-        width: 100px;  
       }
 
       .uploadOuter {
-        text-align: left;
-        padding: 20px;
-        margin: 30px 0 0 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* margin: 125px 0 0 0 ; */
+        height: 100%;
+        width: 100%;
       }
 
       #upload-form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         background: rgba(255, 255, 255, 0.59);
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         backdrop-filter: blur(11.7px);
@@ -82,7 +86,7 @@ body {
         border-radius: 0 20px 20px 0;
       }
       h1{
-        font-size: 50px;
+        font-size: 25px;
         font-weight: 800;
         color: white;
       }
@@ -139,13 +143,22 @@ body {
         justify-content: center;
       }
       h2{
+        color: white;
         text-align: center;
         font-size: 32px;
         font-weight: 800;
       }
+      
+      #dragdrag{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+      }
       .dragBox {
         width: 500px;
-        height: 200px;
+        height: 400px;
         margin: 15px auto;
         position: relative;
         text-align: center;
@@ -156,6 +169,8 @@ body {
         border-radius: 25px;
         display: flex;
         flex-direction: column;
+        align-items: center;
+        justify-content: center;
         transition: transform 0.3s;
         background-color: rgba(255, 255, 255, 0.877);
       }
@@ -177,10 +192,11 @@ body {
       #preview img {
         display: block;
         margin-top: 30px;
-        width: 40%;
+        width: 80%;
         min-width: 10px;
         margin: 0;
         align-self: center;
+        border-radius: 10%;
       }
       
       p#preview-text {
@@ -191,7 +207,7 @@ body {
         font-size: 14px;
       }
       #preview-container{
-        height: 200px;
+        height: 100%;
         width: 100%;
         display: flex;
         flex-direction: column;

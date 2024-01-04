@@ -129,4 +129,3 @@ if __name__ == '__main__':
     model = YOLO(str(opt.model))
 
     app.run(host='0.0.0.0', port=port, debug=False)
-    
