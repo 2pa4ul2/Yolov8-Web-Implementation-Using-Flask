@@ -19,8 +19,8 @@ def update_options(request):
     
     # POST parameters
     if request.method == 'POST':
-        json_data = request.get_json() #Get the POSTed json
-        json_data = json.dumps(json_data) # API receive a dictionary, so I have to do this to convert to string
+        json_data = request.get_json() #Get the posted json
+        json_data = json.dumps(json_data) # API receive a dictionary, Necessary to convert to string
         dict_data = json.loads(json_data) # Convert json to dictionary 
         source = dict_data['source']
         save_txt = dict_data.get('save_txt', None)        

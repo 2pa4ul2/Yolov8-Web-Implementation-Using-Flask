@@ -120,11 +120,15 @@ body {
         justify-content: center;
         align-items: center;
       }
+
+      
       #img-result img{
         height: auto;
         width: 95%;
         border-radius: 25px;
       }
+
+
       #main-text{
         display: flex;
         flex-direction: column;
