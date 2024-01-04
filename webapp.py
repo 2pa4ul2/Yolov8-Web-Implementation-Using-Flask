@@ -23,7 +23,7 @@ app = Flask(__name__)
 app.config['IMAGE_RESULTS'] = "static/results"
 
 def predict(opt, save_path=None):
-    opt.conf = 0.5
+    # opt.conf = 0.5
     results = model(**vars(opt), stream=True)
 
     for i, result in enumerate(results):
@@ -111,7 +111,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--model','--weights', type=str, default=ROOT / 'best.pt', help='model path or triton URL')
     parser.add_argument('--source', type=str, default=ROOT / 'data/images', help='source directory for images or videos')
-    parser.add_argument('--conf','--conf-thres', type=float, default=0.7, help='object confidence threshold for detection')
+    parser.add_argument('--conf','--conf-thres', type=float, default=0.33, help='object confidence threshold for detection')
     parser.add_argument('--iou', '--iou-thres', type=float, default=0.7, help='intersection over union (IoU) threshold for NMS')
     parser.add_argument('--imgsz', '--img', '--img-size', nargs='+', type=int, default=[640], help='image size as scalar or (h, w) list, i.e. (640, 480)')
     parser.add_argument('--half', action='store_true', help='use half precision (FP16)')

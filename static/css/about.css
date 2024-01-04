@@ -20,6 +20,10 @@ body {
         color: white;
         font-weight: 600;
       }
+      h2{
+        color: white;
+        text-align: center;
+      }
       #bgbase{
         z-index: 0;
         background-color: rgba(0, 0, 0, 0.75);
@@ -62,13 +66,5 @@ body {
         align-items: center;
       }
       img{
-        height: 300px;
-        width: 300px;
-        border-radius: 10px;
-      }
-      img:hover{
-        transform: scale(1.05);
-        transition: ease-in-out .3s;
-        opacity: 100%;
-        filter: brightness(.5);
+        height: 500px;
       }
