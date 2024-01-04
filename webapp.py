@@ -28,14 +28,14 @@ def predict(opt, save_path=None):
 
     for i, result in enumerate(results):
         if opt.save_txt:
-            result_json = json.loads(result.tojson())
-            yield json.dumps({'results': result_json})
+            result_json = json.loads(result.tojson())       #Convert to json
+            yield json.dumps({'results': result_json})      #yield json representation
         else:
             im0 = result.plot()
-            timestamp = datetime.now().strftime("%Y%m%d%H%M%S%f")
-            im_path = save_path / f"result_image_{timestamp}_{i}.jpg"
-            cv2.imwrite(str(im_path), im0)
-            im_bytes = cv2.imencode('.jpg', im0)[1].tobytes()
+            timestamp = datetime.now().strftime("%Y%m%d%H%M%S%f")           #Timestamp for filename
+            im_path = save_path / f"result_image_{timestamp}_{i}.jpg"       #Path,Filename,index
+            cv2.imwrite(str(im_path), im0)                                  #save to path
+            im_bytes = cv2.imencode('.jpg', im0)[1].tobytes()               
             yield (b'--frame\r\n'
                    b'Content-Type: image/jpeg\r\n\r\n' + im_bytes + b'\r\n')
 
