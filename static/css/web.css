@@ -1,7 +1,7 @@
 body {
   font-family: 'Montserrat', sans-serif;
   margin: 0;
-  background-image: url("/static/base.jpg");
+  background-image: url("/static/background/base.jpg");
   background-repeat:no-repeat ;
   background-size: cover;
   display:flex;
@@ -17,19 +17,19 @@ main{
 }
     #bgbase{
       z-index: 0;
-      background-color: rgba(0, 0, 0, 0.75);
+      background-color: rgba(0, 0, 0, 0.85);
       position: absolute;
       height: 100%;
       width: 100%;
-      filter: brightness(30%);
+      filter: brightness(15%);
     }
 
     #container {
-      background: rgba( 255, 255, 255, 0.1 );
-      backdrop-filter: blur( 20px );
-      -webkit-backdrop-filter: blur( 20px );
-      border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.671);
+      /* backdrop-filter: blur(2px) saturate(182%);
+      -webkit-backdrop-filter: blur(2px) saturate(182%);
+      background-color: rgba(255, 255, 255, 0.13);  */
+      border: 2px solid rgba(209, 213, 219, 0.9);
+      /* border-width: 1px 0; */
       margin: auto;
       width: 70%;
       height: 90%;
@@ -66,11 +66,11 @@ main{
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(255, 255, 255, 0.59);
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-      backdrop-filter: blur(11.7px);
-      -webkit-backdrop-filter: blur(11.7px);
-      border: 1px solid rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(0px) saturate(180%);
+      -webkit-backdrop-filter: blur(0px) saturate(180%);
+      background-color: rgba(255, 255, 255, 0.73);
+      border-radius: 12px;
+      border: 1px solid rgba(209, 213, 219, 0.3);
       border-radius: 0 20px 20px 0;
       height: 100%;
       width: 100%;
