@@ -54,7 +54,7 @@ body {
         background-color: rgba(255, 255, 255, 0.50);
         border-radius: 12px;
         border: 1px solid rgba(255, 255, 255, 0.61);
-        width:50%;
+        width:70%;
         height: 90%;
         border-radius: 23px;
       }
@@ -75,8 +75,12 @@ body {
         margin: 10px 0 0 0;
         width: 90%;
         height: 10%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
-      #definition-container{
+      
+      ul{
         background: rgba(255, 255, 255, 0.04);
         border-radius: 16px;
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -85,23 +89,44 @@ body {
         border: 1px solid rgba(255, 255, 255, 1);
         margin: 10px 0 0 0;
         width: 90%;
-        height: 30%;
+        height: auto;
         text-wrap: wrap;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
-      #definition-container p{
-        font-size: 14px;
-        margin: 10px 10px 0 ;
+
+      ul{
+        list-style-type: none;
+        text-decoration: none;
+        padding: 0;
+      }
+
+      li{
+        margin: 0;
+        padding: 10px;
+        font-size: 1.2em;
       }
 
       .ani-cir{
         margin: 10px 0 0 0;
         padding: 10px 50px;
-        background-color: antiquewhite;
+        background-color: rgb(255, 255, 255);
         border-radius: 10px;
       }
       .ani-cir a{
         text-decoration: none;
+        list-style-type: none;
         color: black;
+      }
+      .btn:hover {
+        transition : 1000ms;
+        padding: 10px 20px;
+        transform : translateY(-0px);
+        background-color: #fff;
+        color: black;
+        border: none;
+        box-shadow: none;
       }
 
       #all-container{
@@ -113,8 +138,8 @@ body {
       }
 
       #img-result{
-        height:80%;
-        width: 80%; 
+        height:90%;
+        width: 90%; 
         display: flex;
         flex-direction: column;
         justify-content: center;

@@ -22,21 +22,26 @@ app = Flask(__name__)
 app.config['IMAGE_RESULTS'] = "static/results"
 
 def predict(opt, save_path=None):
-    # opt.conf = 0.5
-    results = model(**vars(opt), stream=True)
+    for i, result in enumerate(model(**vars(opt), stream=True)):
+        labels_for_image = []
 
-    for i, result in enumerate(results):
-        if opt.save_txt:
-            result_json = json.loads(result.tojson())       #Convert to json
-            yield json.dumps({'results': result_json})      #yield json representation
-        else:
-            im0 = result.plot()
-            timestamp = datetime.now().strftime("%Y%m%d%H%M%S%f")           #Timestamp for filename
-            im_path = save_path / f"result_image_{timestamp}_{i}.jpg"       #Path,Filename,index
-            cv2.imwrite(str(im_path), im0)                                  #save to path
-            im_bytes = cv2.imencode('.jpg', im0)[1].tobytes()               
-            yield (b'--frame\r\n'
-                   b'Content-Type: image/jpeg\r\n\r\n' + im_bytes + b'\r\n')
+        # Sort bounding boxes by their x-coordinate to maintain order
+        sorted_indices = sorted(range(len(result.boxes.xyxy)), key=lambda k: result.boxes.xyxy[k][0])
+
+        for idx in sorted_indices:
+            c = result.boxes.cls[idx]
+            label = model.names[int(c)]
+            confidence = result.boxes.conf[idx]
+            labels_for_image.append(f"{label} ({confidence:.2f})")
+            print(f"{label} ({confidence:.2f})")
+
+        im0 = result.plot()
+        timestamp = datetime.now().strftime("%Y%m%d%H%M%S%f")
+        im_path = save_path / f"result_image_{timestamp}_{i}.jpg"
+        cv2.imwrite(str(im_path), im0)
+        im_bytes = cv2.imencode('.jpg', im0)[1].tobytes()
+
+        yield im_bytes, labels_for_image
 
 # Splash page
 @app.route('/')
@@ -62,30 +67,14 @@ def about():
     return render_template('about.html')
 
 
-#Detection page
-@app.route('/detection', methods=['GET', 'POST'])
-def detection():
-    saved_filenames = request.args.getlist('filenames')
-    result_path = Path(__file__).parent / 'static' / 'results'
-    list_of_images = sorted(result_path.glob('result_image_*.jpg'), key=os.path.getmtime, reverse=True)
-
-    if list_of_images:
-        most_recent_image = list_of_images[0]
-    else:
-        most_recent_image = None
-
-    return render_template('detection.html', most_recent_image=most_recent_image, saved_filenames=saved_filenames)
-    
-    
-# Index page
-@app.route('/index', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
         uploaded_file = request.files.get('myfile')
         save_txt = request.form.get('save_txt', 'F')
 
         if uploaded_file:
-            source = Path(__file__).parent / raw_data / uploaded_file.filename
+            source = Path(__file__).parent / 'raw_data' / uploaded_file.filename
             uploaded_file.save(source)
             opt.source = source
         else:
@@ -95,14 +84,13 @@ def index():
 
         result_path = Path(__file__).parent / 'static' / 'results'  
         result_path.mkdir(parents=True, exist_ok=True)
-        predictions = list(predict(opt, save_path=result_path))
+        # Call the modified predict function to get the image bytes and labels
+        im_bytes, labels_list = zip(*predict(opt, save_path=result_path))
+        saved_filenames = [f"result_image_{i}.jpg" for i in range(len(im_bytes))]
 
-        saved_filenames = [f"result_image_{i}.jpg" for i in range(len(predictions))]
+        return render_template('detection.html', most_recent_image=None, saved_filenames=saved_filenames, im_bytes=im_bytes, labels_list=labels_list)
 
-        return redirect(url_for('detection', filenames=saved_filenames))
     return render_template('index.html')
-
-
 
 
 if __name__ == '__main__':
