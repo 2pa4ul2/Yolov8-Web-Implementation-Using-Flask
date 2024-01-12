@@ -43,6 +43,12 @@ def predict(opt, save_path=None):
 
         yield im_bytes, labels_for_image
 
+
+
+
+            
+
+
 # Splash page
 @app.route('/')
 def splash():
@@ -67,14 +73,36 @@ def about():
     return render_template('about.html')
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/detection', methods=['GET', 'POST'])
+def detection():
+    saved_filenames = request.args.getlist('filenames')
+    result_path = Path(__file__).parent / 'static' / 'results'
+    list_of_images = sorted(result_path.glob('result_image_*.jpg'), key=os.path.getmtime, reverse=True)
+
+    labels_list = []  # New list to store labels
+    im_bytes = b''  # Initialize image bytes
+
+    if list_of_images:
+        most_recent_image = list_of_images[0]
+
+        # Call the modified predict function to get the image bytes and labels
+        im_bytes, labels_list = zip(*predict(opt, save_path=result_path))
+
+    else:
+        most_recent_image = None
+
+    return render_template('detection.html', most_recent_image=most_recent_image, saved_filenames=saved_filenames, im_bytes=im_bytes, labels_list=labels_list)
+    
+    
+# Index page
+@app.route('/index', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
         uploaded_file = request.files.get('myfile')
         save_txt = request.form.get('save_txt', 'F')
 
         if uploaded_file:
-            source = Path(__file__).parent / 'raw_data' / uploaded_file.filename
+            source = Path(__file__).parent / raw_data / uploaded_file.filename
             uploaded_file.save(source)
             opt.source = source
         else:
@@ -84,13 +112,14 @@ def index():
 
         result_path = Path(__file__).parent / 'static' / 'results'  
         result_path.mkdir(parents=True, exist_ok=True)
-        # Call the modified predict function to get the image bytes and labels
-        im_bytes, labels_list = zip(*predict(opt, save_path=result_path))
-        saved_filenames = [f"result_image_{i}.jpg" for i in range(len(im_bytes))]
+        predictions = list(predict(opt, save_path=result_path))
 
-        return render_template('detection.html', most_recent_image=None, saved_filenames=saved_filenames, im_bytes=im_bytes, labels_list=labels_list)
+        saved_filenames = [f"result_image_{i}.jpg" for i in range(len(predictions))]
 
+        return redirect(url_for('detection', filenames=saved_filenames))
     return render_template('index.html')
+
+
 
 
 if __name__ == '__main__':
@@ -121,4 +150,3 @@ if __name__ == '__main__':
 
     # Run app
     app.run(host='0.0.0.0', port=port, debug=False)
-    
