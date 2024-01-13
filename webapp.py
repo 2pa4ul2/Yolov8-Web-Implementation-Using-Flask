@@ -42,13 +42,7 @@ def predict(opt, save_path=None):
         im_bytes = cv2.imencode('.jpg', im0)[1].tobytes()
 
         yield im_bytes, labels_for_image
-
-
-
-
-            
-
-
+   
 # Splash page
 @app.route('/')
 def splash():
@@ -65,12 +59,6 @@ def gallery():
 
     # Pass the list of image filenames to the template
     return render_template('gallery.html', image_filenames=image_filenames)
-
-
-
-@app.route('/about', methods=['GET', 'POST'])
-def about():
-    return render_template('about.html')
 
 
 @app.route('/detection', methods=['GET', 'POST'])
@@ -127,7 +115,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--model','--weights', type=str, default=ROOT / 'best.pt', help='model path or triton URL')
     parser.add_argument('--source', type=str, default=ROOT / 'data/images', help='source directory for images or videos')
-    parser.add_argument('--conf','--conf-thres', type=float, default=0.33, help='object confidence threshold for detection')
+    parser.add_argument('--conf','--conf-thres', type=float, default=0.3, help='object confidence threshold for detection')
     parser.add_argument('--imgsz', '--img', '--img-size', nargs='+', type=int, default=[640], help='image size as scalar or (h, w) list, i.e. (640, 480)')
     parser.add_argument('--raw_data', '--raw-data', default=ROOT / 'data/raw', help='save raw images to data/raw')
     parser.add_argument('--port', default=5000, type=int, help='port deployment')

@@ -21,7 +21,6 @@ body {
         position: absolute;
         height: 100%;
         width: 100%;
-        filter: brightness(10%);
       }
 
       #container {
@@ -32,8 +31,8 @@ body {
         -webkit-backdrop-filter: blur(6.4px); */
         /* border: 5px solid rgba(255, 255, 255, 0.671); */
         margin: auto;
-        width: 70%;
-        height: 90%;
+        width: 80%;
+        height: auto;
         border-radius: 25px;
         position: absolute;
       }
@@ -51,7 +50,7 @@ body {
         align-items: center;
         backdrop-filter: blur(3px) saturate(180%);
         -webkit-backdrop-filter: blur(3px) saturate(180%);
-        background-color: rgba(255, 255, 255, 0.50);
+        background-color: rgba(76, 76, 76, 0.5);
         border-radius: 12px;
         border: 1px solid rgba(255, 255, 255, 0.61);
         width:70%;
@@ -62,18 +61,21 @@ body {
         height: 80%;
       }
       h1{
-        color: #fff;
-        font-weight: 600;
+        color: white;
+        font-weight: 800;
+      }
+      h2{
+        color: white;
+        margin: 10px;
       }
       #label-container{
-        background: rgba(255, 255, 255, 0.04);
+        background: rgba(255, 255, 255, 0.402);
         border-radius: 16px;
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         backdrop-filter: blur(6.4px);
         -webkit-backdrop-filter: blur(6.4px);
         border: 1px solid rgba(255, 255, 255, 1);
         margin: 10px 0 0 0;
-        width: 90%;
+        width: 50%;
         height: 10%;
         display: flex;
         align-items: center;
@@ -81,14 +83,13 @@ body {
       }
       
       ul{
-        background: rgba(255, 255, 255, 0.04);
+        background: rgba(255, 255, 255, 0.402);
         border-radius: 16px;
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         backdrop-filter: blur(6.4px);
         -webkit-backdrop-filter: blur(6.4px);
         border: 1px solid rgba(255, 255, 255, 1);
-        margin: 10px 0 0 0;
-        width: 90%;
+        margin: 10px 20px 0 20px;
+        width: auto;
         height: auto;
         text-wrap: wrap;
         display: flex;
@@ -100,16 +101,17 @@ body {
         list-style-type: none;
         text-decoration: none;
         padding: 0;
+        color: white;
       }
 
       li{
         margin: 0;
         padding: 10px;
-        font-size: 1.2em;
+        font-size: 1em;
       }
 
       .ani-cir{
-        margin: 10px 0 0 0;
+        margin: 10px 0 20px 0;
         padding: 10px 50px;
         background-color: rgb(255, 255, 255);
         border-radius: 10px;
@@ -135,10 +137,11 @@ body {
         display: flex;
         align-items: center;
         justify-content: center;
+        flex-direction: column;
       }
 
       #img-result{
-        height:90%;
+        height:80%;
         width: 90%; 
         display: flex;
         flex-direction: column;
@@ -147,7 +150,7 @@ body {
       }
       #img-result img{
         height: auto;
-        width: 95%;
+        width: 40%;
         border-radius: 25px;
       }
       #main-text{
@@ -157,4 +160,5 @@ body {
         justify-content: center;
         height: 100%;
         width: 100%; 
+        margin: 0 0 10px 0 ;
       }
