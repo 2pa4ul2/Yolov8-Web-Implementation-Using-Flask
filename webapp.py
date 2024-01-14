@@ -25,23 +25,22 @@ def predict(opt, save_path=None):
     for i, result in enumerate(model(**vars(opt), stream=True)):
         labels_for_image = []
 
-        # Sort bounding boxes by their x-coordinate to maintain order
-        sorted_indices = sorted(range(len(result.boxes.xyxy)), key=lambda k: result.boxes.xyxy[k][0])
+        sorted_indices = sorted(range(len(result.boxes.xyxy)), key=lambda k: result.boxes.xyxy[k][0]) #sorting bounding boxes to maintain order
 
-        for idx in sorted_indices:
+        for idx in sorted_indices:                                      #Extracting labels and confidence level for display
             c = result.boxes.cls[idx]
             label = model.names[int(c)]
             confidence = result.boxes.conf[idx]
             labels_for_image.append(f"{label} ({confidence:.2f})")
             print(f"{label} ({confidence:.2f})")
 
-        im0 = result.plot()
+        im0 = result.plot()                                             #Generates image,timestamp for result name, saving image, and converts the image to bytes.                    
         timestamp = datetime.now().strftime("%Y%m%d%H%M%S%f")
         im_path = save_path / f"result_image_{timestamp}_{i}.jpg"
         cv2.imwrite(str(im_path), im0)
         im_bytes = cv2.imencode('.jpg', im0)[1].tobytes()
 
-        yield im_bytes, labels_for_image
+        yield im_bytes, labels_for_image            #returning the value
    
 # Splash page
 @app.route('/')
@@ -86,39 +85,36 @@ def detection():
 @app.route('/index', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        uploaded_file = request.files.get('myfile')
+        uploaded_file = request.files.get('myfile') #taking uploaded file
         save_txt = request.form.get('save_txt', 'F')
 
         if uploaded_file:
-            source = Path(__file__).parent / raw_data / uploaded_file.filename
+            source = Path(__file__).parent / raw_data / uploaded_file.filename #savefile
             uploaded_file.save(source)
             opt.source = source
         else:
-            opt.source, _ = update_options(request)
+            opt.source, _ = update_options(request)    
 
         opt.save_txt = True if save_txt == 'T' else False
 
-        result_path = Path(__file__).parent / 'static' / 'results'  
-        result_path.mkdir(parents=True, exist_ok=True)
-        predictions = list(predict(opt, save_path=result_path))
+        result_path = Path(__file__).parent / 'static' / 'results'   #directory
+        result_path.mkdir(parents=True, exist_ok=True)               #create if it does not exist
+        predictions = list(predict(opt, save_path=result_path))        #Perform prediction
 
-        saved_filenames = [f"result_image_{i}.jpg" for i in range(len(predictions))]
+        saved_filenames = [f"result_image_{i}.jpg" for i in range(len(predictions))]    #generating file name
 
-        return redirect(url_for('detection', filenames=saved_filenames))
+        return redirect(url_for('detection', filenames=saved_filenames))        #redirect to detection route
     return render_template('index.html')
-
-
-
 
 if __name__ == '__main__':
     # Input arguments
     parser = argparse.ArgumentParser()
-    parser.add_argument('--model','--weights', type=str, default=ROOT / 'best.pt', help='model path or triton URL')
-    parser.add_argument('--source', type=str, default=ROOT / 'data/images', help='source directory for images or videos')
-    parser.add_argument('--conf','--conf-thres', type=float, default=0.3, help='object confidence threshold for detection')
-    parser.add_argument('--imgsz', '--img', '--img-size', nargs='+', type=int, default=[640], help='image size as scalar or (h, w) list, i.e. (640, 480)')
-    parser.add_argument('--raw_data', '--raw-data', default=ROOT / 'data/raw', help='save raw images to data/raw')
-    parser.add_argument('--port', default=5000, type=int, help='port deployment')
+    parser.add_argument('--model','--weights', type=str, default=ROOT / 'best.pt', help='model path or triton URL')             #argument for model
+    parser.add_argument('--source', type=str, default=ROOT / 'data/images', help='source directory for images or videos')       #path of image or video
+    parser.add_argument('--conf','--conf-thres', type=float, default=0.3, help='object confidence threshold for detection')     #Confidence level 
+    parser.add_argument('--imgsz', '--img', '--img-size', nargs='+', type=int, default=[640], help='image size as scalar or (h, w) list, i.e. (640, 480)')      #image size
+    parser.add_argument('--raw_data', '--raw-data', default=ROOT / 'data/raw', help='save raw images to data/raw')      #for saving raw image
+    parser.add_argument('--port', default=5000, type=int, help='port deployment')                   #deployment route
     opt, unknown = parser.parse_known_args()
 
     # print used arguments
