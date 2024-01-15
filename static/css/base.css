@@ -104,11 +104,11 @@ body {
   }
 
   img{
-    height: 50px;
+    height: 10px;
   }
 
   .icons{
-    height: 30px;
+    height: 20px;
   }
 
   #bgbase{
@@ -116,7 +116,7 @@ body {
     position: absolute;
     height: 100vh;
     width: 100%;
-    filter: brightness(30%);
+    filter: brightness(15%);
     background-repeat:no-repeat ;
     background-size: cover;
   }
@@ -124,7 +124,7 @@ body {
   h1{
     justify-content: end;
     color: white;
-    font-size: 12px;
+    font-size: 20px;
     text-wrap: wrap;
   }
 
@@ -192,7 +192,7 @@ body {
   }
 
   .icons{
-    height: 40px;
+    height: 20px;
   }
 
   #bgbase{
@@ -200,7 +200,7 @@ body {
     position: absolute;
     height: 100vh;
     width: 100%;
-    filter: brightness(30%);
+    filter: brightness(15%);
     background-repeat:no-repeat ;
     background-size: cover;
   }

@@ -21,9 +21,12 @@ ROOT = Path(os.path.relpath(ROOT, Path.cwd()))
 app = Flask(__name__)
 app.config['IMAGE_RESULTS'] = "static/results"
 
+global_results = []
+
 def predict(opt, save_path=None):
     for i, result in enumerate(model(**vars(opt), stream=True)):
         labels_for_image = []
+        global global_results
 
         sorted_indices = sorted(range(len(result.boxes.xyxy)), key=lambda k: result.boxes.xyxy[k][0]) #sorting bounding boxes to maintain order
 
@@ -40,7 +43,9 @@ def predict(opt, save_path=None):
         cv2.imwrite(str(im_path), im0)
         im_bytes = cv2.imencode('.jpg', im0)[1].tobytes()
 
-        yield im_bytes, labels_for_image            #returning the value
+        global_results.append((im_bytes, labels_for_image))     #save to global variable
+
+        yield im_bytes, labels_for_image        #returning the value
    
 # Splash page
 @app.route('/')
@@ -62,23 +67,25 @@ def gallery():
 
 @app.route('/detection', methods=['GET', 'POST'])
 def detection():
+    global global_results       #access global variable
+
     saved_filenames = request.args.getlist('filenames')
-    result_path = Path(__file__).parent / 'static' / 'results'
-    list_of_images = sorted(result_path.glob('result_image_*.jpg'), key=os.path.getmtime, reverse=True)
+    result_path = Path(__file__).parent / 'static' / 'results'      #save path
+    list_of_images = sorted(result_path.glob('result_image_*.jpg'), key=os.path.getmtime, reverse=True)  #most recent image
 
     labels_list = []  # New list to store labels
     im_bytes = b''  # Initialize image bytes
 
+    if global_results:
+        most_recent_results = global_results[-1]
+        im_bytes, labels_list = most_recent_results     #unpacking the labels and image
+
     if list_of_images:
-        most_recent_image = list_of_images[0]
-
-        # Call the modified predict function to get the image bytes and labels
-        im_bytes, labels_list = zip(*predict(opt, save_path=result_path))
-
+        most_recent_image = list_of_images[0]   
     else:
         most_recent_image = None
 
-    return render_template('detection.html', most_recent_image=most_recent_image, saved_filenames=saved_filenames, im_bytes=im_bytes, labels_list=labels_list)
+    return render_template('detection.html', most_recent_image=most_recent_image, saved_filenames=saved_filenames, im_bytes=im_bytes, labels_list=labels_list)      #render html
     
     
 # Index page

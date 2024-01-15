@@ -30,7 +30,7 @@
                         </div>
                         <ul>
                             {% for labels in labels_list %}
-                                <li>{{ labels|join('  ') }}</li>
+                                <li>{{ labels|join('') }}</li>
                             {% endfor %}
                         </ul>
                         <div class="ani-cir"><a href="{{ url_for('gallery') }}" class="btn btn-primary">Go to Gallery</a></div>
