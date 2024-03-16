@@ -5,8 +5,6 @@
 
 Baybayin AI is a project designed to help individuals recognize handwritten baybayin characters via uploaded images.
 
-![alt text](static\icons\1.png)
-
 ## Tools used:
 
     - PYTHON FLASK
