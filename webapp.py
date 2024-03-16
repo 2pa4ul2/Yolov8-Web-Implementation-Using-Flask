@@ -118,7 +118,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--model','--weights', type=str, default=ROOT / 'best.pt', help='model path or triton URL')             #argument for model
     parser.add_argument('--source', type=str, default=ROOT / 'data/images', help='source directory for images or videos')       #path of image or video
-    parser.add_argument('--conf','--conf-thres', type=float, default=0.3, help='object confidence threshold for detection')     #Confidence level 
+    parser.add_argument('--conf','--conf-thres', type=float, default=0.4, help='object confidence threshold for detection')     #Confidence level 
     parser.add_argument('--imgsz', '--img', '--img-size', nargs='+', type=int, default=[640], help='image size as scalar or (h, w) list, i.e. (640, 480)')      #image size
     parser.add_argument('--raw_data', '--raw-data', default=ROOT / 'data/raw', help='save raw images to data/raw')      #for saving raw image
     parser.add_argument('--port', default=5000, type=int, help='port deployment')                   #deployment route
