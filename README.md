@@ -5,6 +5,8 @@
 
 Baybayin AI is a project designed to help individuals recognize handwritten baybayin characters via uploaded images.
 
+![alt text](static\icons\1.png)
+
 ## Tools used:
 
     - PYTHON FLASK
@@ -25,18 +27,18 @@ Baybayin AI is a project designed to help individuals recognize handwritten bayb
     - Implementation of YoloV8 Model
 
 ## Dataset
-    - All dataset used for training can be found in the link below: 
-    - link: https://universe.roboflow.com/lorence-john-ejercito-w6cx7/baybayin-text-detector-9klcl/dataset/2
+All dataset used for training can be found in the link below: 
+link: https://universe.roboflow.com/lorence-john-ejercito-w6cx7/baybayin-text-detector-9klcl/dataset/2
 
 ## Algorithm
 The training model used is a Convolutional neural network(CNN) called You only look once (YOLOv8) from Ultralytics. It is a computer vision algorithm used for detecting patterns and objects on images.
 
-    1. Gather Dataset, Annotate and Label the characters.
-    2. Divide the dataset for Training, Validation and Testing
-    3. Load the dataset on Google colab or Jupyter notebook
-    4. Train the model
-    5. Validate the model
-    6. Test the model
+1. Gather Dataset, Annotate and Label the characters.
+2. Divide the dataset for Training, Validation and Testing
+3. Load the dataset on Google colab or Jupyter notebook
+4. Train the model
+5. Validate the model
+6. Test the model
 
 ## Collaborators
 - Vashti Karmelli Camu
