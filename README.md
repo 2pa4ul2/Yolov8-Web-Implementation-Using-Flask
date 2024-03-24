@@ -4,6 +4,7 @@
 # BAYBAYIN HANDWRITTEN RECOGNITION SYSTEM
 
 Baybayin AI is a project designed to help individuals recognize handwritten baybayin characters via uploaded images.
+![image](https://github.com/2pa4ul2/Yolov8-Web-Implementation-Using-Flask/assets/95076322/426e1488-d744-40c8-a5bc-454d8eeffc83)
 
 ## Tools used:
 
