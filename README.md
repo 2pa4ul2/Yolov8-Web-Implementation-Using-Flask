@@ -5,6 +5,10 @@
 
 Baybayin AI is a project designed to help individuals recognize handwritten baybayin characters via uploaded images.
 ![image](https://github.com/2pa4ul2/Yolov8-Web-Implementation-Using-Flask/assets/95076322/426e1488-d744-40c8-a5bc-454d8eeffc83)
+![image](https://github.com/2pa4ul2/Yolov8-Web-Implementation-Using-Flask/assets/95076322/886b1bef-ffa5-4107-9846-25b5f3cc9683)
+![image](https://github.com/2pa4ul2/Yolov8-Web-Implementation-Using-Flask/assets/95076322/7318cd89-ac0a-4e8c-ac0f-633231a814e9)
+![image](https://github.com/2pa4ul2/Yolov8-Web-Implementation-Using-Flask/assets/95076322/72184bff-02f9-4c35-b8e4-c70aa00c0010)
+![image](https://github.com/2pa4ul2/Yolov8-Web-Implementation-Using-Flask/assets/95076322/f9b428e7-667f-4322-8584-2e642530725b)
 
 ## Tools used:
 
