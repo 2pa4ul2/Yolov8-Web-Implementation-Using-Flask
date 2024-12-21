@@ -42,9 +42,3 @@ The training model used is a Convolutional neural network(CNN) called You only l
 4. Train the model
 5. Validate the model
 6. Test the model
-
-## Collaborators
-- Vashti Karmelli Camu
-- Diane Mae Corcino
-- Jamie Jasmine Sano
-- Paul Adrian Torres (ME)
